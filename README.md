@@ -1,12 +1,54 @@
-# Claude Code OSS
+<div align="center">
 
-A rebuilt, fully functional version of Anthropic's **Claude Code** CLI -- the terminal-based coding agent that lets you interact with Claude directly from the command line.
+# Claude Code Rebuilt
+
+**A rebuilt, fully functional version of Anthropic's Claude Code CLI**
+
+[![TypeScript](https://img.shields.io/badge/TypeScript-512K%2B_lines-3178C6?logo=typescript&logoColor=white)](#tech-stack)
+[![Bun](https://img.shields.io/badge/Runtime-Bun-f472b6?logo=bun&logoColor=white)](#tech-stack)
+[![React + Ink](https://img.shields.io/badge/UI-React_%2B_Ink-61DAFB?logo=react&logoColor=black)](#tech-stack)
+[![Files](https://img.shields.io/badge/~1,900_files-source_only-grey)](#project-structure)
+
+</div>
+
+---
+
+## Table of Contents
+
+- [Background](#background)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Building](#building)
+- [Project Structure](#project-structure)
+- [How It Works](#how-it-works)
+- [Notes](#notes)
+- [Disclaimer](#disclaimer)
+
+---
 
 ## Background
 
 On March 31, 2026, the full source code of Anthropic's Claude Code was [leaked via a source map file](https://x.com/AiBreakfast/status/1906632204466995584) exposed in their npm registry. The leak contained only the `src/` directory -- no build configuration, no dependency manifests, no type definitions for core modules, and no way to compile or run it.
 
 This project reconstructs everything that was missing: `package.json`, `tsconfig.json`, build scripts, 185+ stub/type files, compatibility shims for internal-only packages, and a `bun:bundle` feature-flag runtime. The result is a complete, buildable, and runnable Claude Code terminal application. Internal-only Anthropic features (daemon workers, voice mode, computer-use, etc.) are disabled at build time via feature flags; the core interactive REPL, tool system, and Anthropic API integration remain fully functional.
+
+---
+
+## Tech Stack
+
+| Category | Technology |
+|---|---|
+| Language | [TypeScript](https://www.typescriptlang.org/) (strict) |
+| Runtime | [Bun](https://bun.sh) |
+| Terminal UI | [React](https://react.dev) + [Ink](https://github.com/vadimdemedes/ink) |
+| CLI Parsing | [Commander.js](https://github.com/tj/commander.js) (extra-typings) |
+| Schema Validation | [Zod](https://zod.dev) |
+| Protocols | [MCP SDK](https://modelcontextprotocol.io) · LSP |
+| API | [Anthropic SDK](https://docs.anthropic.com) |
+| Auth | OAuth 2.0 · API Key · macOS Keychain |
+
+---
 
 ## Getting Started
 
@@ -26,7 +68,7 @@ bun install
 
 ### 3. Set your API key
 
-You need an [Anthropic API key](https://console.anthropic.com/):
+You need an [Anthropic API key](https://console.anthropic.com/), or you can use OAuth login (`/login` in the REPL):
 
 ```bash
 export ANTHROPIC_API_KEY="sk-ant-..."
@@ -37,14 +79,13 @@ export ANTHROPIC_API_KEY="sk-ant-..."
 ```bash
 # Launch the interactive REPL
 bun run start
-
-# Or equivalently:
-bun run src/entrypoints/cli.tsx
 ```
 
 That's it -- you should see the Claude Code terminal UI.
 
-## Usage Examples
+---
+
+## Usage
 
 ```bash
 # Print version
@@ -66,18 +107,22 @@ bun run start -- --system-prompt "You are a Go expert"
 bun run start -- --model sonnet
 ```
 
-## Building a Bundled Binary
+---
 
-You can also produce a single-file bundle:
+## Building
+
+Produce a single-file bundle:
 
 ```bash
 # Build to dist/cli.js
 bun run build
 
-# Run it
+# Run the built artifact
 bun dist/cli.js
 bun dist/cli.js --help
 ```
+
+---
 
 ## Project Structure
 
@@ -108,6 +153,8 @@ bun dist/cli.js --help
 └── bunfig.toml               # Preload config + .md text loader
 ```
 
+---
+
 ## How It Works
 
 The original Claude Code source depends on Bun's `bun:bundle` module for compile-time feature flags and `MACRO.*` globals for build-time constants. This project provides:
@@ -117,11 +164,15 @@ The original Claude Code source depends on Bun's `bun:bundle` module for compile
 3. **Stub packages under `src/_external/shims/`** -- lightweight no-op modules for `@ant/*` internal packages and native NAPI addons that aren't publicly available.
 4. **Reconstructed type files** -- `src/types/message.ts`, `src/types/tools.ts`, and other high-fanout modules that were missing from the leaked source.
 
+---
+
 ## Notes
 
 - Features gated behind disabled flags (voice, bridge, daemon, coordinator, assistant/Kairos, etc.) are not functional.
 - The interactive REPL, `--print` mode, `--help`, and the full Commander option surface all work.
 - Authentication (API key and OAuth), Anthropic API calls, tool execution, MCP server integration, and the Ink-based terminal UI are preserved from the original source.
+
+---
 
 ## Disclaimer
 
