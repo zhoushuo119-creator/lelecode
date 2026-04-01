@@ -124,6 +124,25 @@ export function applyLelecodeConfig(): void {
       process.env.ANTHROPIC_MODEL = model
     }
   }
+
+  // API 格式：自动检测或从配置读取，注入环境变量供后续使用
+  if (!process.env.LELE_API_FORMAT) {
+    // 1. 优先用配置中显式声明的格式
+    if (endpoint.apiFormat) {
+      process.env.LELE_API_FORMAT = endpoint.apiFormat
+    } else {
+      // 2. 根据 baseUrl 自动检测（OpenAI 兼容中转站）
+      const lower = endpoint.baseUrl.toLowerCase()
+      const openaiPatterns = [
+        'openai.com', 'deepseek.com', 'generativelanguage.googleapis.com',
+        'dashscope.aliyuncs.com', 'open.bigmodel.cn', 'moonshot.cn',
+        'groq.com', 'together.xyz', 'mistral.ai', 'openrouter.ai',
+      ]
+      if (openaiPatterns.some(p => lower.includes(p))) {
+        process.env.LELE_API_FORMAT = 'openai'
+      }
+    }
+  }
 }
 
 /**

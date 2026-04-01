@@ -175,6 +175,7 @@ import exportCommand from './commands/export/index.js'
 import model from './commands/model/index.js'
 import history from './commands/history/index.js'
 import template from './commands/template/index.js'
+import webSearch from './commands/web/index.js'
 import tag from './commands/tag/index.js'
 import outputStyle from './commands/output-style/index.js'
 import remoteEnv from './commands/remote-env/index.js'
@@ -292,6 +293,7 @@ const COMMANDS = memoize((): Command[] => [
   mobile,
   model,
   template,
+  webSearch,
   outputStyle,
   remoteEnv,
   plugin,

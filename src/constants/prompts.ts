@@ -58,6 +58,7 @@ import { SLEEP_TOOL_NAME } from '../tools/SleepTool/prompt.js'
 import { TICK_TAG } from './xml.js'
 import { logForDebugging } from '../utils/debug.js'
 import { loadMemoryPrompt } from '../memdir/memdir.js'
+import { getMemorySystemPrompt as getLeleMemoryPrompt } from '../utils/leleMemory.js'
 import { isUndercover } from '../utils/undercover.js'
 import { isMcpInstructionsDeltaEnabled } from '../utils/mcpInstructionsDelta.js'
 
@@ -493,6 +494,7 @@ ${CYBER_RISK_INSTRUCTION}`,
       getSessionSpecificGuidanceSection(enabledTools, skillToolCommands),
     ),
     systemPromptSection('memory', () => loadMemoryPrompt()),
+    systemPromptSection('lele_memory', () => getLeleMemoryPrompt()),
     systemPromptSection('ant_model_override', () =>
       getAntModelOverrideSection(),
     ),
