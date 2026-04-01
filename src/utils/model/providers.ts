@@ -21,6 +21,11 @@ export function getAPIProviderForStatsig(): AnalyticsMetadata_I_VERIFIED_THIS_IS
  * Check if ANTHROPIC_BASE_URL is a first-party Anthropic API URL.
  * Returns true if not set (default API) or points to api.anthropic.com
  * (or api-staging.anthropic.com for ant users).
+ *
+ * lelecode: When ANTHROPIC_BASE_URL is set to a third-party proxy/relay,
+ * this returns false. This is intentional — it disables client-request-id
+ * injection and some analytics, but does NOT block requests.
+ * Users can use any Anthropic-compatible API relay by setting ANTHROPIC_BASE_URL.
  */
 export function isFirstPartyAnthropicBaseUrl(): boolean {
   const baseUrl = process.env.ANTHROPIC_BASE_URL
