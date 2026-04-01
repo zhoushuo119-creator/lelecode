@@ -39,6 +39,7 @@ export interface LelecodeEndpoint {
   baseUrl: string   // API 地址，如 "https://api.duckcoding.ai"
   apiKey: string    // API Key
   model?: string    // 该端点专用模型（可选，优先级高于 defaultModel）
+  apiFormat?: 'anthropic' | 'openai'  // API 格式（默认 anthropic）
 }
 
 export interface LelecodeConfig {
