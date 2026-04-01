@@ -438,66 +438,67 @@ const lightDaltonizedTheme: Theme = {
  * from users' custom terminal ANSI color definitions
  */
 const darkTheme: Theme = {
-  autoAccept: 'rgb(175,135,255)', // Electric violet
-  bashBorder: 'rgb(253,93,177)', // Bright pink
-  claude: 'rgb(215,119,87)', // Claude orange
-  claudeShimmer: 'rgb(235,159,127)', // Lighter claude orange for shimmer effect
-  claudeBlue_FOR_SYSTEM_SPINNER: 'rgb(147,165,255)', // Blue for system spinner
-  claudeBlueShimmer_FOR_SYSTEM_SPINNER: 'rgb(177,195,255)', // Lighter blue for system spinner shimmer
-  permission: 'rgb(177,185,249)', // Light blue-purple
-  permissionShimmer: 'rgb(207,215,255)', // Lighter blue-purple for shimmer
-  planMode: 'rgb(72,150,140)', // Muted sage green
-  ide: 'rgb(71,130,200)', // Muted blue
-  promptBorder: 'rgb(136,136,136)', // Medium gray
-  promptBorderShimmer: 'rgb(166,166,166)', // Lighter gray for shimmer
-  text: 'rgb(255,255,255)', // White
-  inverseText: 'rgb(0,0,0)', // Black
-  inactive: 'rgb(153,153,153)', // Light gray
-  inactiveShimmer: 'rgb(193,193,193)', // Lighter gray for shimmer effect
-  subtle: 'rgb(80,80,80)', // Dark gray
-  suggestion: 'rgb(177,185,249)', // Light blue-purple
-  remember: 'rgb(177,185,249)', // Light blue-purple
-  background: 'rgb(0,204,204)', // Bright cyan
-  success: 'rgb(78,186,101)', // Bright green
-  error: 'rgb(255,107,128)', // Bright red
-  warning: 'rgb(255,193,7)', // Bright amber
-  merged: 'rgb(175,135,255)', // Electric violet (matches autoAccept)
-  warningShimmer: 'rgb(255,223,57)', // Lighter amber for shimmer
-  diffAdded: 'rgb(34,92,43)', // Dark green
-  diffRemoved: 'rgb(122,41,54)', // Dark red
-  diffAddedDimmed: 'rgb(71,88,74)', // Very dark green
-  diffRemovedDimmed: 'rgb(105,72,77)', // Very dark red
-  diffAddedWord: 'rgb(56,166,96)', // Medium green
-  diffRemovedWord: 'rgb(179,89,107)', // Softer red (less intense than bright red)
+  // 🌸 乐乐code 粉嫩少女风主题 — 粉紫渐变配色
+  autoAccept: 'rgb(200,120,220)', // 淡紫
+  bashBorder: 'rgb(240,130,180)', // 樱花粉
+  claude: 'rgb(230,100,170)', // 玫瑰粉（主品牌色）
+  claudeShimmer: 'rgb(245,150,200)', // 浅玫瑰粉 shimmer
+  claudeBlue_FOR_SYSTEM_SPINNER: 'rgb(180,130,240)', // 薰衣草紫
+  claudeBlueShimmer_FOR_SYSTEM_SPINNER: 'rgb(210,170,255)', // 浅紫 shimmer
+  permission: 'rgb(210,160,240)', // 轻紫
+  permissionShimmer: 'rgb(230,195,255)', // 极浅紫 shimmer
+  planMode: 'rgb(160,120,200)', // 中紫
+  ide: 'rgb(180,140,220)', // 蓝紫
+  promptBorder: 'rgb(220,140,180)', // 粉边框
+  promptBorderShimmer: 'rgb(240,175,210)', // 浅粉边框 shimmer
+  text: 'rgb(255,235,245)', // 极浅粉白
+  inverseText: 'rgb(60,20,40)', // 深红棕
+  inactive: 'rgb(180,140,160)', // 藕粉灰
+  inactiveShimmer: 'rgb(210,175,190)', // 浅藕粉 shimmer
+  subtle: 'rgb(90,50,70)', // 深玫瑰暗色
+  suggestion: 'rgb(210,160,240)', // 轻紫提示
+  remember: 'rgb(230,100,170)', // 玫瑰粉记忆
+  background: 'rgb(230,100,170)', // 玫瑰粉背景
+  success: 'rgb(150,220,180)', // 薄荷绿成功
+  error: 'rgb(255,120,140)', // 珊瑚红错误
+  warning: 'rgb(255,200,100)', // 蜜桃橙警告
+  merged: 'rgb(200,120,220)', // 淡紫合并
+  warningShimmer: 'rgb(255,225,150)', // 浅橙 shimmer
+  diffAdded: 'rgb(50,90,60)', // 深绿 diff
+  diffRemoved: 'rgb(110,40,60)', // 深玫瑰 diff
+  diffAddedDimmed: 'rgb(70,90,75)', // 暗绿 diff
+  diffRemovedDimmed: 'rgb(100,65,75)', // 暗玫瑰 diff
+  diffAddedWord: 'rgb(100,200,140)', // 亮绿词级 diff
+  diffRemovedWord: 'rgb(240,100,140)', // 玫瑰词级 diff
   // Agent colors
-  red_FOR_SUBAGENTS_ONLY: 'rgb(220,38,38)', // Red 600
-  blue_FOR_SUBAGENTS_ONLY: 'rgb(37,99,235)', // Blue 600
-  green_FOR_SUBAGENTS_ONLY: 'rgb(22,163,74)', // Green 600
-  yellow_FOR_SUBAGENTS_ONLY: 'rgb(202,138,4)', // Yellow 600
-  purple_FOR_SUBAGENTS_ONLY: 'rgb(147,51,234)', // Purple 600
-  orange_FOR_SUBAGENTS_ONLY: 'rgb(234,88,12)', // Orange 600
-  pink_FOR_SUBAGENTS_ONLY: 'rgb(219,39,119)', // Pink 600
-  cyan_FOR_SUBAGENTS_ONLY: 'rgb(8,145,178)', // Cyan 600
+  red_FOR_SUBAGENTS_ONLY: 'rgb(240,80,110)',
+  blue_FOR_SUBAGENTS_ONLY: 'rgb(140,160,255)',
+  green_FOR_SUBAGENTS_ONLY: 'rgb(100,210,150)',
+  yellow_FOR_SUBAGENTS_ONLY: 'rgb(255,210,90)',
+  purple_FOR_SUBAGENTS_ONLY: 'rgb(190,120,240)',
+  orange_FOR_SUBAGENTS_ONLY: 'rgb(255,160,100)',
+  pink_FOR_SUBAGENTS_ONLY: 'rgb(255,130,190)',
+  cyan_FOR_SUBAGENTS_ONLY: 'rgb(120,220,220)',
   // Grove colors
-  professionalBlue: 'rgb(106,155,204)',
+  professionalBlue: 'rgb(160,170,230)',
   // Chrome colors
-  chromeYellow: 'rgb(251,188,4)', // Chrome yellow
-  // TUI V2 colors
-  clawd_body: 'rgb(215,119,87)',
-  clawd_background: 'rgb(0,0,0)',
-  userMessageBackground: 'rgb(55, 55, 55)', // Lighter grey for better visual contrast
-  userMessageBackgroundHover: 'rgb(70, 70, 70)',
-  messageActionsBackground: 'rgb(44, 50, 62)', // cool gray, slight blue
-  selectionBg: 'rgb(38, 79, 120)', // classic dark-mode selection blue (VS Code dark default); light fgs stay readable
-  bashMessageBackgroundColor: 'rgb(65, 60, 65)',
+  chromeYellow: 'rgb(255,210,100)',
+  // TUI V2 colors — 吉祥物/logo 用粉紫色
+  clawd_body: 'rgb(230,100,170)',      // 玫瑰粉 lele大字
+  clawd_background: 'rgb(50,20,40)',   // 深玫瑰背景
+  userMessageBackground: 'rgb(65, 35, 55)',
+  userMessageBackgroundHover: 'rgb(80, 48, 68)',
+  messageActionsBackground: 'rgb(55, 30, 50)',
+  selectionBg: 'rgb(160, 80, 130)',
+  bashMessageBackgroundColor: 'rgb(70, 40, 60)',
 
-  memoryBackgroundColor: 'rgb(55, 65, 70)',
-  rate_limit_fill: 'rgb(177,185,249)', // Light blue-purple
-  rate_limit_empty: 'rgb(80,83,112)', // Medium blue-purple
-  fastMode: 'rgb(255,120,20)', // Electric orange for dark bg
-  fastModeShimmer: 'rgb(255,165,70)', // Lighter orange for shimmer
-  briefLabelYou: 'rgb(122,180,232)', // Light blue
-  briefLabelClaude: 'rgb(215,119,87)', // Brand orange
+  memoryBackgroundColor: 'rgb(60, 35, 55)',
+  rate_limit_fill: 'rgb(210,160,240)',
+  rate_limit_empty: 'rgb(100,60,90)',
+  fastMode: 'rgb(255,100,160)',
+  fastModeShimmer: 'rgb(255,155,200)',
+  briefLabelYou: 'rgb(160,200,255)',   // 冰蓝
+  briefLabelClaude: 'rgb(230,100,170)', // 玫瑰粉
   rainbow_red: 'rgb(235,95,87)',
   rainbow_orange: 'rgb(245,139,87)',
   rainbow_yellow: 'rgb(250,195,95)',

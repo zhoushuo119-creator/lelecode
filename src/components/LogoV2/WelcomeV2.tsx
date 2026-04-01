@@ -116,10 +116,10 @@ export function WelcomeV2() {
     t0 = <Text><Text color="claude">{"乐乐code"} </Text><Text dimColor={true}>v{MACRO.VERSION} </Text></Text>;
     t1 = <Text>{"\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026\u2026"}</Text>;
     t2 = <Text>{"                                                          "}</Text>;
-    t3 = <Text>{"     *                                       \u2588\u2588\u2588\u2588\u2588\u2593\u2593\u2591     "}</Text>;
-    t4 = <Text>{"                                 *         \u2588\u2588\u2588\u2593\u2591     \u2591\u2591   "}</Text>;
-    t5 = <Text>{"            \u2591\u2591\u2591\u2591\u2591\u2591                        \u2588\u2588\u2588\u2593\u2591           "}</Text>;
-    t6 = <Text>{"    \u2591\u2591\u2591   \u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591                      \u2588\u2588\u2588\u2593\u2591           "}</Text>;
+    t3 = <Text><Text color="clawd_body">{"  ✦ 「 乐 乐 c o d e 」 ✦  "}</Text></Text>;
+    t4 = <Text><Text color="permission">{"  ♡ AI 编程助手 · 由乐乐创建 ♡  "}</Text></Text>;
+    t5 = <Text><Text dimColor={true}>{"  ～～～～～～～～～～～～～～  "}</Text></Text>;
+    t6 = <Text>{"                                                          "}</Text>;
     $[18] = t0;
     $[19] = t1;
     $[20] = t2;
@@ -142,11 +142,11 @@ export function WelcomeV2() {
   let t8;
   let t9;
   if ($[25] === Symbol.for("react.memo_cache_sentinel")) {
-    t7 = <Text><Text>{"   \u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591    "}</Text><Text bold={true}>*</Text><Text>{"                \u2588\u2588\u2593\u2591\u2591      \u2593   "}</Text></Text>;
-    t8 = <Text>{"                                             \u2591\u2593\u2593\u2588\u2588\u2588\u2593\u2593\u2591    "}</Text>;
-    t9 = <Text dimColor={true}>{" *                                 \u2591\u2591\u2591\u2591                   "}</Text>;
-    t10 = <Text dimColor={true}>{"                                 \u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591                 "}</Text>;
-    t11 = <Text dimColor={true}>{"                               \u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591           "}</Text>;
+    t7 = <Text><Text color="claude">{"  █  ▀▀ █  ▀▀"}</Text><Text dimColor={true}>{"  lele·code"}</Text></Text>;
+    t8 = <Text><Text color="claude">{"  █  █▀ █  █▀"}</Text><Text dimColor={true}>{"  v"}{MACRO.VERSION}</Text></Text>;
+    t9 = <Text><Text color="claude">{"  ▀▀ ▄▄ ▀▀ ▄▄"}</Text><Text dimColor={true}>{"  ♡ 乐乐出品"}</Text></Text>;
+    t10 = <Text>{"                                                          "}</Text>;
+    t11 = <Text>{"                                                          "}</Text>;
     $[25] = t10;
     $[26] = t11;
     $[27] = t7;
