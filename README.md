@@ -1,183 +1,184 @@
-<div align="center">
+# 乐乐code 🐱
 
-# Claude Code Rebuilt
+> **乐乐code** 是基于 Claude Code 改造的 AI 编程助手，由乐乐创建。
+> 支持任意第三方 API 中转站，全中文界面，开箱即用。
 
-**A rebuilt, fully functional version of Anthropic's Claude Code CLI**
-
-[![TypeScript](https://img.shields.io/badge/TypeScript-512K%2B_lines-3178C6?logo=typescript&logoColor=white)](#tech-stack)
-[![Bun](https://img.shields.io/badge/Runtime-Bun-f472b6?logo=bun&logoColor=white)](#tech-stack)
-[![React + Ink](https://img.shields.io/badge/UI-React_%2B_Ink-61DAFB?logo=react&logoColor=black)](#tech-stack)
-[![Files](https://img.shields.io/badge/~1,900_files-source_only-grey)](#project-structure)
-
-</div>
-
----
-
-## Table of Contents
-
-- [Background](#background)
-- [Tech Stack](#tech-stack)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Building](#building)
-- [Project Structure](#project-structure)
-- [How It Works](#how-it-works)
-- [Notes](#notes)
-- [Disclaimer](#disclaimer)
-
----
-
-## Background
-
-On March 31, 2026, the full source code of Anthropic's Claude Code was leaked via a source map file exposed in their npm registry. [The leaked source code](https://github.com/instructkr/claw-code) contained only the `src/` directory -- no build configuration, no dependency manifests, no type definitions for core modules, and no way to compile or run it.
-
-This project reconstructs everything that was missing: `package.json`, `tsconfig.json`, build scripts, 185+ stub/type files, compatibility shims for internal-only packages, and a `bun:bundle` feature-flag runtime. The result is a complete, buildable, and runnable Claude Code terminal application. Internal-only Anthropic features (daemon workers, voice mode, computer-use, etc.) are disabled at build time via feature flags; the core interactive REPL, tool system, and Anthropic API integration remain fully functional.
-
----
-
-## Tech Stack
-
-| Category | Technology |
-|---|---|
-| Language | [TypeScript](https://www.typescriptlang.org/) (strict) |
-| Runtime | [Bun](https://bun.sh) |
-| Terminal UI | [React](https://react.dev) + [Ink](https://github.com/vadimdemedes/ink) |
-| CLI Parsing | [Commander.js](https://github.com/tj/commander.js) (extra-typings) |
-| Schema Validation | [Zod](https://zod.dev) |
-| Protocols | [MCP SDK](https://modelcontextprotocol.io) · LSP |
-| API | [Anthropic SDK](https://docs.anthropic.com) |
-| Auth | OAuth 2.0 · API Key · macOS Keychain |
-
----
-
-## Getting Started
-
-### 1. Install Bun
-
-Claude Code runs on [Bun](https://bun.sh/) (v1.1+). If you don't have it:
-
-```bash
-curl -fsSL https://bun.sh/install | bash
+```
+  █  ▀▀ █  ▀▀  乐乐code v1.0.0
+  █  █▀ █  █▀  claude-sonnet-4-6 · API
+  ▀▀ ▄▄ ▀▀ ▄▄  ~/your-project
 ```
 
-### 2. Install dependencies
+---
+
+## ✨ 特性
+
+| 特性 | 说明 |
+|------|------|
+| 🌐 **中转站支持** | 支持任意兼容 Anthropic API 格式的中转站（one-api、new-api、OpenRouter 等） |
+| 📝 **配置文件** | `~/.lelecode/config.json` 永久保存配置，无需每次设置环境变量 |
+| 🔀 **多中转站** | 支持配置多个中转站，一键切换 |
+| 🈶 **中文界面** | 界面提示语全部汉化 |
+| 🛠️ **配置向导** | `bun run setup` 交互式配置向导 |
+| 📦 **一键启动** | `lele.sh` 脚本，首次运行自动引导配置 |
+
+---
+
+## 🚀 快速开始
+
+### 1. 安装依赖
 
 ```bash
+# 先安装 bun（如果没有的话）
+curl -fsSL https://bun.sh/install | bash
+
+# 克隆项目
+git clone https://github.com/zhoushuo119-creator/lelecode.git
+cd lelecode
+
+# 安装依赖
 bun install
 ```
 
-### 3. Set your API key
+### 2. 配置 API（三种方式选一）
 
-You need an [Anthropic API key](https://console.anthropic.com/), or you can use OAuth login (`/login` in the REPL):
-
+#### 方式一：使用配置向导（推荐）
 ```bash
-export ANTHROPIC_API_KEY="sk-ant-..."
+bun run setup
+```
+按提示填入你的中转站地址和 API Key，配置会保存到 `~/.lelecode/config.json`。
+
+#### 方式二：手动编辑配置文件
+```bash
+mkdir -p ~/.lelecode
+cat > ~/.lelecode/config.json << 'EOF'
+{
+  "defaultEndpoint": "my-api",
+  "defaultModel": "claude-sonnet-4-6",
+  "endpoints": [
+    {
+      "name": "my-api",
+      "label": "🌐 我的中转站",
+      "baseUrl": "https://你的中转站地址.com",
+      "apiKey": "sk-你的密钥"
+    }
+  ]
+}
+EOF
 ```
 
-### 4. Start the application
+#### 方式三：临时环境变量
+```bash
+export ANTHROPIC_BASE_URL="https://你的中转站地址.com"
+export ANTHROPIC_API_KEY="sk-你的密钥"
+```
+
+### 3. 启动
 
 ```bash
-# Launch the interactive REPL
+# 方式一：npm 脚本
 bun run start
-```
 
-That's it -- you should see the Claude Code terminal UI.
+# 方式二：一键脚本（首次运行自动引导配置）
+chmod +x lele.sh
+./lele.sh
+
+# 方式三：安装为系统命令
+chmod +x lele.sh
+sudo cp lele.sh /usr/local/bin/lele
+lele
+```
 
 ---
 
-## Usage
+## ⚙️ 配置说明
+
+配置文件位置：`~/.lelecode/config.json`
+
+```json
+{
+  "defaultEndpoint": "duckcoding",
+  "defaultModel": "claude-sonnet-4-6",
+  "endpoints": [
+    {
+      "name": "duckcoding",
+      "label": "🦆 DuckCoding",
+      "baseUrl": "https://api.duckcoding.ai",
+      "apiKey": "sk-xxx",
+      "model": "claude-sonnet-4-6"
+    },
+    {
+      "name": "openrouter",
+      "label": "🌐 OpenRouter",
+      "baseUrl": "https://openrouter.ai/api/v1",
+      "apiKey": "sk-or-xxx"
+    }
+  ]
+}
+```
+
+| 字段 | 说明 |
+|------|------|
+| `defaultEndpoint` | 默认使用的中转站名称（对应 `name` 字段） |
+| `defaultModel` | 全局默认模型 |
+| `endpoints[].name` | 唯一标识，用于 `defaultEndpoint` 引用 |
+| `endpoints[].label` | 显示名称 |
+| `endpoints[].baseUrl` | API 地址（不含 `/v1/messages`） |
+| `endpoints[].apiKey` | API Key |
+| `endpoints[].model` | 该端点专用模型（可选，优先级高于 `defaultModel`） |
+
+**优先级**：环境变量 > 配置文件 > 默认值
+
+---
+
+## 🛠️ 管理命令
 
 ```bash
-# Print version
+# 配置向导（添加/切换/删除中转站）
+bun run setup
+
+# 查看版本
 bun run start -- --version
 
-# Show all CLI flags and subcommands
-bun run start -- --help
-
-# One-shot prompt (pipe-friendly, prints response and exits)
-bun run start -- --print "explain this codebase"
-
-# Minimal startup (skips hooks, plugins, auto-memory)
-bun run start -- --bare
-
-# Pass a system prompt
-bun run start -- --system-prompt "You are a Go expert"
-
-# Use a specific model
-bun run start -- --model sonnet
+# 打包为单文件可执行程序
+bun run build:bin
+# 生成 ./lele 可执行文件，可直接运行，不需要安装 bun
 ```
 
 ---
 
-## Building
+## 🌐 常见中转站配置
 
-Produce a single-file bundle:
-
-```bash
-# Build to dist/cli.js
-bun run build
-
-# Run the built artifact
-bun dist/cli.js
-bun dist/cli.js --help
-```
+| 中转站 | baseUrl | 说明 |
+|--------|---------|------|
+| DuckCoding | `https://api.duckcoding.ai` | 支持 Claude 全系列 |
+| OpenRouter | `https://openrouter.ai/api/v1` | 聚合多家模型 |
+| one-api 自建 | `http://你的IP:3000/v1` | 自建聚合网关 |
+| new-api 自建 | `http://你的IP:3000` | 自建聚合网关 |
+| LiteLLM | `http://你的IP:8000` | 开源代理网关 |
 
 ---
 
-## Project Structure
+## 📝 常见问题
 
-```
-.
-├── src/
-│   ├── entrypoints/cli.tsx   # Process entrypoint
-│   ├── main.tsx              # Commander CLI setup, REPL launch
-│   ├── commands.ts           # Slash-command registry
-│   ├── tools.ts              # Tool registry (Bash, Edit, Read, etc.)
-│   ├── Tool.ts               # Base tool type definitions
-│   ├── query.ts              # LLM query engine
-│   ├── ink/                  # Vendored Ink terminal renderer
-│   ├── components/           # React terminal UI components
-│   ├── screens/              # Full-screen UIs (REPL, Doctor, Resume)
-│   ├── services/             # API client, MCP, analytics, compaction
-│   ├── hooks/                # React hooks
-│   ├── utils/                # Utility functions
-│   ├── types/                # Reconstructed type definitions
-│   └── _external/            # Build compatibility layer
-│       ├── preload.ts        # Runtime MACRO + bun:bundle shim
-│       ├── globals.d.ts      # MACRO type declarations
-│       └── shims/            # Stub packages for private deps
-├── scripts/
-│   └── build-external.ts     # Bun.build() with feature flags + defines
-├── package.json
-├── tsconfig.json
-└── bunfig.toml               # Preload config + .md text loader
-```
+**Q: 报错 "No available channel for model xxx"**
+
+A: 你的中转站没有配置这个模型，换一个该中转站支持的模型名，或者在 `endpoints[].model` 里指定正确的模型名。
+
+**Q: 报错 "请勿在 Claude Code CLI 之外使用接口"**
+
+A: 该中转站限制了 User-Agent，乐乐code 已内置正确的 User-Agent，如果仍然报错说明该中转站有额外限制。
+
+**Q: 怎么切换模型？**
+
+A: 启动后输入 `/model` 命令，或者修改配置文件里的 `defaultModel`，或者启动时设置 `export ANTHROPIC_MODEL=模型名`。
 
 ---
 
-## How It Works
+## 📄 免责声明
 
-The original Claude Code source depends on Bun's `bun:bundle` module for compile-time feature flags and `MACRO.*` globals for build-time constants. This project provides:
-
-1. **`bunfig.toml` + `preload.ts`** -- registers a Bun plugin that resolves `import { feature } from 'bun:bundle'` at runtime, and defines `MACRO.VERSION` and friends as globals.
-2. **`scripts/build-external.ts`** -- a `Bun.build()` script that replaces `bun:bundle` via a plugin, injects `MACRO.*` via `define`, and marks private packages as external. All 90+ internal feature flags are disabled; only a handful of safe flags are enabled.
-3. **Stub packages under `src/_external/shims/`** -- lightweight no-op modules for `@ant/*` internal packages and native NAPI addons that aren't publicly available.
-4. **Reconstructed type files** -- `src/types/message.ts`, `src/types/tools.ts`, and other high-fanout modules that were missing from the leaked source.
+本项目基于 [claude-code-rebuilt](https://github.com/weikma/claude-code-rebuilt) 改造，原始代码为 Anthropic 知识产权，仅供学习研究使用，不得用于商业用途。
 
 ---
 
-## Notes
-
-- Features gated behind disabled flags (voice, bridge, daemon, coordinator, assistant/Kairos, etc.) are not functional.
-- The interactive REPL, `--print` mode, `--help`, and the full Commander option surface all work.
-- Authentication (API key and OAuth), Anthropic API calls, tool execution, MCP server integration, and the Ink-based terminal UI are preserved from the original source.
-
----
-
-## Disclaimer
-
-**All original Claude Code source code is the intellectual property of [Anthropic, PBC](https://www.anthropic.com/).** This repository is based on source code that was unintentionally exposed and is provided here **strictly for research, educational, and archival purposes only**.
-
-- This project carries **no license**. No permission is granted to use, modify, distribute, or create derivative works for any commercial purpose.
-- This is an independent reconstruction effort and is **not affiliated with, endorsed by, or sponsored by Anthropic** in any way.
-- If you are a representative of Anthropic and would like this repository removed, please open an issue or contact the maintainer ([@weikma](https://github.com/weikma)) directly.
+*乐乐code，乐在编程 🎉*

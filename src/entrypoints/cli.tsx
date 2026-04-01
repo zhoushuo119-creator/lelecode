@@ -4,6 +4,17 @@ import { feature } from 'bun:bundle';
 // eslint-disable-next-line custom-rules/no-top-level-side-effects
 process.env.COREPACK_ENABLE_AUTO_PIN = '0';
 
+// lelecode: 最早期注入配置文件中的 API 设置，环境变量优先级更高
+// eslint-disable-next-line custom-rules/no-top-level-side-effects
+{
+  try {
+    const { applyLelecodeConfig } = await import('../utils/leleconfig.js');
+    applyLelecodeConfig();
+  } catch {
+    // 配置文件不存在或解析失败时静默忽略
+  }
+}
+
 // Set max heap size for child processes in CCR environments (containers have 16GB)
 // eslint-disable-next-line custom-rules/no-top-level-side-effects, custom-rules/no-process-env-top-level, custom-rules/safe-env-boolean-check
 if (process.env.CLAUDE_CODE_REMOTE === 'true') {

@@ -6,8 +6,11 @@
   "main": "src/entrypoints/cli.tsx",
   "scripts": {
     "start": "bun run src/entrypoints/cli.tsx",
+    "lele": "bun run src/entrypoints/cli.tsx",
     "build": "bun run scripts/build-external.ts",
+    "build:bin": "bun build src/entrypoints/cli.tsx --compile --outfile lele",
     "start:built": "bun dist/cli.js",
+    "setup": "bun run src/commands/lele-setup.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
